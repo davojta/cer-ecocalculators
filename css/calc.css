@@ -1,0 +1,65 @@
+.page-node #page #content {
+    padding: 0;
+}
+
+
+#water_container {
+    border: 1px solid red;
+    font-size: 14px;
+}
+
+.tabs {
+    background-color:  #e6eef1;
+    border: 1px black;
+    text: 16px;
+}
+
+.tab {
+    padding: 5px;
+}
+
+.tab.active {
+    background-color: #77cce9;
+}
+
+.tab-section {
+    padding: 0 120px;
+}
+.tab-section h1 {
+    font-size: 31px;
+
+}
+.tab-section h2 {
+    font-size: 22px;
+
+}
+.tab-section h2 .water_amount {
+    color: #e65135;
+    font-size: 61px;
+}
+
+.question {
+    padding: 20px;
+}
+
+.info-note {
+    background-color: #FFF;
+}
+
+.costs {
+    background-color: #f6faf2;
+}
+
+.costs h2 {
+    color: green;
+    font-size: 32px;
+}
+.costs h4 {
+    font-weight: bold;
+}
+.advice {
+    /*display: none;*/
+}
+.economy_calculations {
+    background-color: #f2fafc;
+}
