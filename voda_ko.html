@@ -52,6 +52,7 @@
 
     <link rel="stylesheet" href="site_resources/styles/fb.css"/>
 
+    <!-- Calculators files -->
     <script src="bower_components/jquery/dist/jquery.js" type="text/javascript"></script>
     <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
     <script src="bower_components/numeral/numeral.js" type="text/javascript"></script>
@@ -63,6 +64,7 @@
     <link rel="stylesheet" href="css/bootstrap-theme.css"/>
 
     <link rel="stylesheet" href="css/calc.css"/>
+    <!-- Calculators files end -->
     <style>
 
     </style>
@@ -220,10 +222,10 @@
                         <div class="tab col-md-6 text-center text-uppercase" data-bind="css: {active: tab() === 1}, style: { 'font-weight': tab() === 1 ? 'bold' : 'normal'}, click: changeTab(1) ">У вас нет счетчика воды</div>
                         <div class="tab col-md-6 text-center text-uppercase" data-bind="css: {active: tab() === 2}, style: { 'font-weight': tab() === 2 ? 'bold' : 'normal' }, click: changeTab(2)" >У вас есть счетчик воды</div>
                     </div>
-                    <div class="tabs-content row">
-                        <div class="tab-content col-md-12"
+                    <div class="tabs-content">
+                        <div class="tab-content"
                              data-bind="visible: tab() === 1">
-                            Tab1 content
+                            div.without_counters.tab-section.container-fluid>.row.h1{98% квартир}+.row.h2{узнайте можете ли вы}+.row.question{Сколько вы уже платите за воду в месяц?}+.row>.input-group>span.input-group-addon+input[type=number][data-bind="value: "].form-control[placeholder="рублей"]^^.row.question{Сколько вы уже платите за подогрев воды в месяц?}+.row>.input-group>span.input-group-addon+input[type=number][data-bind="value: "].form-control[placeholder="рублей"]
                         </div>
                         <div class="tab-content " data-bind="visible: tab() === 2">
                             <div class="economy_calculations tab-section container-fluid">
@@ -364,9 +366,14 @@
                                     </div>
 
                                 </div>
-                                <div class="row"><h2>Ваш расход на одного человека <span id="water_amount" class="water_amount" data-bind="text: consuptionPerPerson"></span> литра в день</h2></div>
+                                <div class="row"><h2>Ваш расход на одного человека <span id="water_amount" class="water_amount" data-bind="text: consuptionPerPerson()"></span> литра в день</h2></div>
                                 <div class="row info-note">
-                                    <div class="col-md-3">ICON</div>
+                                    <div class="col-md-3">
+                                        <div class="info-image-wrapper">
+                                            <img src="css/img/warning_big.png" class="info-image"></img>
+                                        </div>
+
+                                    </div>
                                     <div class="col-md-9">
                                         <div class="advice" data-bind="visible: adviceType() === 'too_little'">
                                             <p>вы расходуете очень мало, проверьте, правильно ли вы ввели данные?</p>
@@ -406,55 +413,55 @@
 
                             <div class="costs container-fluid tab-section" style="">
                                 <div class="row"><h2>Давайте Рассчитаем ваши расходы</h2></div>
-                                <div class="row">
-                                    <div class="col-md-6">
+                                <div class="row ">
+                                    <div class="col-md-6 costs-details-1">
                                         <div class="row"><h4>Тариф на воду</h4></div>
                                         <div class="row">
                                             <div class="col-md-6">До 140 литров</div>
-                                            <div class="col-md-6"><span data-bind="text: tarifWaterMin">1844</span> рублей за м<sup>3</sup></div>
+                                            <div class="col-md-6"><span class="numbers" data-bind="text: tarifWaterMin">1844</span> рублей за м<sup>3</sup></div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">Полный</div>
-                                            <div class="col-md-6"><span data-bind="text: tarifWaterMax">9000</span> рублей за м<sup>3</sup></div>
+                                            <div class="col-md-6"><span class="numbers" data-bind="text: tarifWaterMax">9000</span> рублей за м<sup>3</sup></div>
                                         </div>
                                         <div class="row"><h4>Вы тратите примерно</h4></div>
                                         <div class="row">
                                             <div class="col-md-6">Сейчас</div>
-                                            <div class="col-md-6"><span data-bind="text: yearExpenses()">140000</span> рублей в год</div>
+                                            <div class="col-md-6"><span class="numbers" data-bind="text: yearExpenses()">140000</span> рублей в год</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">После отмены субсидий</div>
-                                            <div class="col-md-6"><span data-bind="text: yearExpensesWithoutSubsidy()">900000</span> рублей в год</div>
+                                            <div class="col-md-6"><span class="numbers" data-bind="text: yearExpensesWithoutSubsidy()">900000</span> рублей в год</div>
                                         </div>
                                         <div class="row"><h4>Вы расходуете</h4></div>
                                         <div class="row">
                                             <div class="col-md-6">Воды</div>
-                                            <div class="col-md-6"><span data-bind="text: yearWaterConsuption()">40</span> м<sup>3</sup> в год</div>
+                                            <div class="col-md-6"><span class="numbers" data-bind="text: yearWaterConsuption()">40</span> м<sup>3</sup> в год</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">Это эквивалентно</div>
-                                            <div class="col-md-6"><span data-bind="text: yearCO2Volume()">932</span> кг СО<sub>2</sub></div>
+                                            <div class="col-md-6"><span class="numbers" data-bind="text: yearCO2Volume()">932</span> кг СО<sub>2</sub></div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 costs-details-2">
                                         <div class="row"><h4>Тариф на подогрев воды</h4></div>
                                         <div class="row">
                                             <div class="col-md-6">Текущий</div>
-                                            <div class="col-md-6"><span data-bind="text: tarifHeatingMin()">300</span> рублей/ГКалл</div>
+                                            <div class="col-md-6"><span class="numbers" data-bind="text: tarifHeatingMin()">300</span> рублей/ГКалл</div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">Полный</div>
-                                            <div class="col-md-6"><span data-bind="text: tarifHeatingFull()">9000</span> рублей/ГКалл</div>
+                                            <div class="col-md-6"><span class="numbers" data-bind="text: tarifHeatingFull()">9000</span> рублей/ГКалл</div>
                                         </div>
                                         <div class="row">
                                             <div><h4>Экономящая семья тратит</h4></div>
                                             <div class="row">
                                                 <div class="col-md-6">Сейчас</div>
-                                                <div class="col-md-6"><span data-bind="text: economyFamilyExpenses()">140000</span> рублей в год</div>
+                                                <div class="col-md-6"><span class="numbers" data-bind="text: economyFamilyExpenses()">140000</span> рублей в год</div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6">При отмене субсидий</div>
-                                                <div class="col-md-6"><span data-bind="text: economyfamilyExpensesWithoutSubsidy()">900000</span> рублей в год</div>
+                                                <div class="col-md-6"><span class="numbers" data-bind="text: economyfamilyExpensesWithoutSubsidy()">900000</span> рублей в год</div>
                                             </div>
 
                                         </div>
@@ -463,11 +470,11 @@
                                                 <div><h4>Экономящая семья расходует</h4></div>
                                                 <div class="row">
                                                     <div class="col-md-6">Воды</div>
-                                                    <div class="col-md-6"><span data-bind="text: economyFamilyConsuption()">88</span> м<sup>3</sup> в год</div>
+                                                    <div class="col-md-6"><span class="numbers" data-bind="text: economyFamilyConsuption()">88</span> м<sup>3</sup> в год</div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-6">Это эквивалентно</div>
-                                                    <div class="col-md-6"><span data-bind="text: economyFamilyCO2()">558</span> кг СО2</div>
+                                                    <div class="col-md-6"><span class="numbers" data-bind="valueNumber: economyFamilyCO2()">558</span> кг СО2</div>
                                                 </div>
 
                                             </div>

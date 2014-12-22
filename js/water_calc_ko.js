@@ -21,10 +21,12 @@ function CalculatorViewModel() {
     this.familyMembers = ko.observable(3);
 
     this.consuptionPerPerson = ko.computed(function() {
-        var fullWaterAmount = this.coldWaterAmount() + this.hotWaterAmount();
+        var fullWaterAmount = parseInt(this.coldWaterAmount(), 10) + parseInt(this.hotWaterAmount(), 10);
         var perPerson = fullWaterAmount / this.familyMembers();
         var perDay = perPerson / 30;
         var liters = perDay * 1000;
+
+        console.log(fullWaterAmount, perPerson, perDay, liters);
 
         return numeral(liters).format('0.0');
     }, this);
@@ -100,5 +102,34 @@ function CalculatorViewModel() {
         return self.economyConsuptionPerPerson*self.familyMembers()*0.5*1.85*6.86;
     });
 }
+
+ko.bindingHandlers.valueNumber = {
+    init: function (element, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+// This will be called when the binding is first applied to an element
+// Set up any initial state, event handlers, etc. here
+
+        var observable = valueAccessor,
+            properties = allBindingsAccessor();
+
+        var interceptor = ko.computed({
+                                          read: function () {
+                                              var format = properties.format || '0, 0.0';
+                                              return numeral(observable()).format(format);
+                                          },
+                                          write: function (newValue) {
+                                              var number = parseFloat(newValue);
+                                              if (number) {
+                                                  observable(number);
+                                              }
+                                          }
+                                      });
+
+        if (ko.utils.tagNameLower(element) === 'input') {
+            ko.applyBindingsToNode(element, { value: interceptor });
+        } else {
+            ko.applyBindingsToNode(element, { text: interceptor });
+        }
+    }
+};
 
 ko.applyBindings(new CalculatorViewModel());
