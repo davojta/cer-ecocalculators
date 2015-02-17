@@ -38,6 +38,26 @@
     font-size: 61px;
 }
 
+.no-counters .expenses, .no-counters  .boiler {
+    float: left;
+}
+
+.boiler .input-group-addon {
+    height: 34px;
+}
+
+.boiler {
+    margin-left: 10px;
+}
+
+.no-counters_results {
+    font-size: 10px;
+}
+
+.no-counters_family-members {
+    color: blue;
+}
+
 .question {
     padding: 20px;
 }

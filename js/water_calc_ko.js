@@ -1,7 +1,7 @@
 function CalculatorViewModel() {
     var self = this;
 
-    this.tab = ko.observable(2);
+    this.tab = ko.observable(1);
 
     this.changeTab = function(tab) {
         return function() {

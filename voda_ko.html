@@ -222,10 +222,191 @@
                         <div class="tab col-md-6 text-center text-uppercase" data-bind="css: {active: tab() === 1}, style: { 'font-weight': tab() === 1 ? 'bold' : 'normal'}, click: changeTab(1) ">У вас нет счетчика воды</div>
                         <div class="tab col-md-6 text-center text-uppercase" data-bind="css: {active: tab() === 2}, style: { 'font-weight': tab() === 2 ? 'bold' : 'normal' }, click: changeTab(2)" >У вас есть счетчик воды</div>
                     </div>
-                    <div class="tabs-content">
-                        <div class="tab-content"
+                    <div class="tabs-content row">
+                        <div class="tab-content no-counters"
                              data-bind="visible: tab() === 1">
-                            div.without_counters.tab-section.container-fluid>.row.h1{98% квартир}+.row.h2{узнайте можете ли вы}+.row.question{Сколько вы уже платите за воду в месяц?}+.row>.input-group>span.input-group-addon+input[type=number][data-bind="value: "].form-control[placeholder="рублей"]^^.row.question{Сколько вы уже платите за подогрев воды в месяц?}+.row>.input-group>span.input-group-addon+input[type=number][data-bind="value: "].form-control[placeholder="рублей"]
+                            <div class="without without_counters tab-section container-fluid">
+                                <div class="row h1">98% квартир</div>
+                                <div class="row h2">узнайте можете ли вы</div>
+                                <div class="row question">Сколько вы уже платите за воду в месяц?</div>
+                                <div class="row">
+                                    <div class="input-group"><span class="input-group-addon"> </span><input
+                                            data-bind="value: 50000;" class="form-control" placeholder="рублей"
+                                            type="number"/>
+                                    </div>
+                                </div>
+                                <div class="row question">Сколько вы уже платите за подогрев воды в месяц?</div>
+                                <div class="row">
+                                    <div class="input-group col-md-4 expenses"><span class="input-group-addon"></span><input
+                                            data-bind="value: 50000;" class="form-control" placeholder="рублей"
+                                            type="number"/>
+                                    </div>
+                                    <div class="input-group col-md-4 boiler">
+                                        <span class="input-group-addon">
+                                            <input type="checkbox" aria-label="...">
+                                        </span>
+                                        <span class="input-group-addon">
+                                        Я не оплачиваю подогрев воды - у меня бойлер
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div class="row question">Cколько человек в вашей семье?</div>
+
+                                <div class="row">
+                                    <div class="input-group col-md-12">
+                                        <input type="number" data-bind="value: familyMembers" class="form-control" placeholder="number of members">
+
+                                        <label class="b-label-main"></label>
+                                        <style>
+                                            .b-form-slider {
+                                                margin: 0 7px 13px;
+                                            }
+                                            .b-form-slider_list {
+                                                font: 0/0 a;
+                                                text-shadow: none;
+                                                color: transparent;
+                                                padding-top: 22px;
+                                                text-align: justify;
+                                            }
+
+                                            .b-form-slider_list:after {
+                                                display: inline-block;
+                                                height: 0;
+                                                overflow: hidden;
+                                                visibility: hidden;
+                                                width: 100%;
+                                                content: '';
+                                            }
+                                            .b-form-slider_item {
+                                                border-left: 1px solid rgba(0, 0, 0, .2);
+                                                border-right: 1px solid rgba(255, 255, 255, .9);
+                                                display: inline-block;
+                                                height: 14px;
+                                                margin: 0 0 8px;
+                                                position: relative;
+                                            }
+
+                                            .b-form-slider_item:after {
+                                                color: #a1a1a1;
+                                                /*font-family*/
+                                                font: 12px/32px;
+                                                content: attr(title);
+                                                display: block;
+                                                left: -20px;
+                                                position: absolute;
+                                                text-align: center;
+                                                top: -28px;
+                                                width: 40px;
+                                            }
+                                            .b-form-slider_measure {
+                                                background: #dddddc;
+                                                border-radius: 4px;
+                                                border-bottom: 1px solid #fafafa;
+                                                border-left: 1px solid #c5c4c1;
+                                                border-right: 1px solid #c5c4c1;
+                                                border-top: 1px solid #8a8580;
+                                                height: 6px;
+                                                position: relative;
+                                            }
+
+                                            .b-form-slider_measure:after {
+                                                bottom: 0;
+                                                box-shadow: -1px 1px 3px rgba(0, 0, 0, .18) inset;
+                                                border-radius: 4px;
+                                                content: '';
+                                                display: block;
+                                                left: 0;
+                                                position: absolute;
+                                                right: 0;
+                                                top: 0;
+                                            }
+
+                                            .b-form-slider_complete {
+                                                background: #bcbcbc;
+                                                border-radius: 4px;
+                                                height: 6px;
+                                            }
+                                            .b-form-slider_ico {
+                                                -webkit-touch-callout: none;
+                                                -webkit-user-select: none;
+                                                -moz-user-select: none;
+                                                -ms-user-select: none;
+                                                user-select: none;
+                                                background: url(/css/img/slider-ico.png) no-repeat 0 0;
+                                                color: #645b4e;
+                                                cursor: pointer;
+                                                display: block;
+                                                height: 32px;
+                                                margin-left: -20px;
+                                                padding-top: 15px;
+                                                position: absolute;
+                                                text-align: center;
+                                                text-shadow: -1px -1px 1px #fff;
+                                                top: -24px;
+                                                width: 40px;
+                                                z-index: 1;
+                                            }
+                                        </style>
+
+                                        <div class="b-form-slider">
+                                            <input class="js-slider-value-holder" id="sliderInputValue" style="display: none;" />
+                                            <ul class="b-form-slider_list">
+                                                <li class="b-form-slider_item">1</li>
+                                                <li class="b-form-slider_item">2</li>
+                                                <li class="b-form-slider_item">3</li>
+                                                <li class="b-form-slider_item">4</li>
+                                                <li class="b-form-slider_item">5</li>
+                                                <li class="b-form-slider_item">6</li>
+                                                <li class="b-form-slider_item">7</li>
+                                                <li class="b-form-slider_item">8</li>
+                                                <li class="b-form-slider_item">9</li>
+                                                <li class="b-form-slider_item">10</li>
+                                                <li class="b-form-slider_item b-form-slider_item__last"></li>
+                                            </ul>
+                                            <div class="b-form-slider_measure">
+                                                <div class="b-form-slider_complete" style="width: 33.34%;"></div>
+                                                <span class="b-form-slider_ico" style="left: 33.34%;">5</span>
+                                            </div>
+                                        </div>
+                                        <p class="b-field-description">1 — маловероятно, 10 — однозначно</p>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="row no-counters_results"><div class="col-md-6 col-md-offset-1"> В среднем, семья из <span class="no-counters_family-members">7</span> человек расходует в месяц</div>
+                                    <div class="col-md-3"><span>12.6</span><span>m<sup>3</sup></span></div>
+                                    <div class="col-md-1"><span class="info">ic</span></div>
+                                </div>
+                                <div class="row no-counters_results"><div class="col-md-6 col-md-offset-1"> Итого: </div>
+                                    <div class="col-md-3"><span>18600</span> рублей</div>
+                                    <div class="col-md-1"><span class="info">ic</span></div>
+                                </div>
+                                <h2 class="row no-counters_counters-question">Не пора ли начать экономить и поставить счетчики?</h2>
+
+                                <div class="row">
+                                    <div class="col-md-7">За год установив счетчики и научившись экономить воду, вы бы
+                                        сэкономили:
+                                    </div>
+                                    <div class="col-md-5"><span class="no-counters no-counters_economy-amount">470000</span><span>рублей</span>
+                                    </div>
+                                </div>
+                                <div class="row">Уточните стоимость одного счётчика с установкой</div>
+                                <div class="row">
+                                    <div class="input-group"><span class="input-group-addon"> </span><input
+                                            data-bind="value: 50000;" class="form-control" placeholder="рублей"
+                                            type="number"/>
+                                    </div>
+
+                                </div>
+                                <div class="row">На октябрь 2014 года она равнялась 500 000 рублей</div>
+                                <div class="row">Установка счетчиков вам окупиться через <span class="years">2.6</span>  лет</div>
+
+
+
+                            </div>
+
                         </div>
                         <div class="tab-content " data-bind="visible: tab() === 2">
                             <div class="economy_calculations tab-section container-fluid">
@@ -250,7 +431,7 @@
                                     <div class="input-group">
                                         <input type="number" data-bind="value: familyMembers" class="form-control" placeholder="number of members">
 
-                                        <label class="b-label-main">Насколько вероятно, что вы порекомендуете игры Wargaming.net своим друзьям?</label>
+                                        <label class="b-label-main"></label>
                                         <style>
                                             .b-form-slider {
                                                 margin: 0 7px 13px;
