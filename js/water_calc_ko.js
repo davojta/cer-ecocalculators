@@ -1,5 +1,6 @@
 function CalculatorViewModel() {
     var self = this;
+    window.model = this; // for debug
 
     this.tab = ko.observable(1);
 
@@ -7,19 +8,64 @@ function CalculatorViewModel() {
         return function() {
             self.tab(tab);
         }
-    }
+    };
 
+    // tarifs
     this.tarifWaterMin = ko.observable(1844);
     this.tarifWaterMax = ko.observable(9000);
     this.tarifHeatingMin = ko.observable(90058);
     this.tarifHeatingFull = ko.observable(300.00);
     this.mediumHeatingRate = ko.observable(0.073);
 
+    //tab 1 no counters
+    this.coldWaterMoney = ko.observable(0000);
+    this.hotWaterMoney = ko.observable(0000);
+    this.haveBoiler = ko.observable(false);
+    this.averageConsuptionAmountPerPerson = ko.observable(7.2);
+
 
     this.coldWaterAmount = ko.observable(6);
     this.hotWaterAmount = ko.observable(6);
     this.familyMembers = ko.observable(3);
 
+    this.coldWaterMoneyStatus = ko.pureComputed(function() {
+        return this.coldWaterMoney() > 0 ? 'calculator-input__ok' : 'calculator-input__error';
+    }, this);
+
+    this.hotWaterMoneyStatus = ko.pureComputed(function() {
+        return this.hotWaterMoney() > 0 ? 'calculator-input__ok' : 'calculator-input__error';
+    }, this);
+
+    this.checkStatus = function(value, errorValue) {
+        return value > errorValue ? 'calculator-input__ok' : 'calculator-input__error';
+    };
+
+
+    
+    
+
+    // tab 1 computed
+    this.averageFamilyConsuption = ko.computed(function() {
+        return numeral(this.familyMembers() * this.averageConsuptionAmountPerPerson()).format('0.0');
+    }, this);
+
+    this.calculatedEconomy = ko.computed(function() {
+        var calalizationAndSupply = this.tarifWaterMin()*this.averageFamilyConsuption();
+        var waterHeating;
+
+        if (this.haveBoiler()) {
+            waterHeating = 0
+        } else {
+            waterHeating = (this.averageFamilyConsuption() / 2) * this.mediumHeatingRate() * this.tarifHeatingMin();
+        }
+
+        var result = calalizationAndSupply + waterHeating;
+        return result;
+    }, this);
+
+
+
+    // tab 2 computed
     this.consuptionPerPerson = ko.computed(function() {
         var fullWaterAmount = parseInt(this.coldWaterAmount(), 10) + parseInt(this.hotWaterAmount(), 10);
         var perPerson = fullWaterAmount / this.familyMembers();
@@ -130,6 +176,19 @@ ko.bindingHandlers.valueNumber = {
             ko.applyBindingsToNode(element, { text: interceptor });
         }
     }
+};
+
+ko.extenders.numeric = function(target, format) {
+    format = format || '0.0';
+    var result = ko.dependentObservable({
+        read: function() {
+            return numeral(target()).format(format);
+        },
+        write: target
+    });
+
+    result.raw = target;
+    return result;
 };
 
 ko.applyBindings(new CalculatorViewModel());
